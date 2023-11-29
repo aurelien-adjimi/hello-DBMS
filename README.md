@@ -105,7 +105,8 @@ La méthode MERISE est une méthode de conception, de développement et de réal
 
 **UML:**  
 UML singnifie Unified Modeling Language. C'est un langage de modélisation graphique à base de pictogrammes conçu comme une méthode normalisée de visualisation dans les domaines du développement logiciel et en conception orientée objet.  
-Ces deux méthodes permettent de modéliser et conceptualiser des bases de données. Merise va plutôt être utilisée pour des projets complèxes et de grandes ampleurs. UML va plutôt être utilisée afin d'améliorer la communication et la compréhension au sein d'une équipe car c'est un moyen normalisé de visualiser la conception d'un système de données.
+Ces deux méthodes permettent de modéliser et conceptualiser des bases de données. Merise va plutôt être utilisée pour des projets complèxes et de grandes ampleurs. UML va plutôt être utilisée afin d'améliorer la communication et la compréhension au sein d'une équipe car c'est un moyen normalisé de visualiser la conception d'un système de données.  
+
 ### **I. Définissez le langage SQL. Donnez les commandes les plus utilisées de ce langage et les différentes jointures qu’il est possible de faire.**  
 Structured Query Language (SQL) est un langage permettant de manipuler les données et les systèmes de bases de données relationnelles.  
 Les commandes les plus utilisées sont:  
