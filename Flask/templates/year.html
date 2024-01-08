@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <title>Emission</title>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1>Analyse de données de l'empreinte carbone mondiale</h1>
+        </div> 
+    </header>
+    <main>
+        <div class="show-value">
+            <h2>Emission totale annuelle de {{country}}</h2>
+            <p>Pour une puissance électrique de {{power}} kw:</p>
+            <p>{{result}} kg of CO2</p>
+        </div>
+        <div class="trees">
+            <p>Il faudrait planter {{number_of_trees}} arbres pour absorber tout ce CO2</p>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

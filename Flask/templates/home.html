@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <title>Accueil</title>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1>Analyse de données de l'empreinte carbone mondiale</h1>
+        </div> 
+        <div class="recherche">
+            <form action="/selected_country" method="POST">
+                <input type="text" name="search-bar" id="searchInput" class="form-control" placeholder="Rechercher un pays" autocomplete="off">
+                <input type="submit" value="Choisir">
+            </form>  
+            <div id="searchResults"></div>
+        </div>   
+    </header>
+    <main>
+        <div class="limit"><h2>Visualisation des données d'émissions carbone</h2></div>
+        <div class="second-container">
+            <div class="region">
+                <h1>Par région</h1>
+                <div class="rank-region">
+                    <label>Classement par émissions</label>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Région</th>
+                                <th>Émissions de carbone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data %}
+                                <tr>
+                                    <td>{{ row[0] }}</td>
+                                    <td>{{ row[1] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="display-region">
+                    <div class="avg-region" data-avg="{{ avg_value }}">
+                        <label>Moyenne d'émission</label>
+                        <p id="counter">0</p>
+                    </div>
+                    <div class="total-region" data-sum="{{ sum_coal }}">
+                        <label>Somme des émissions</label>
+                        <p id="totalCoal">0</p>
+                    </div>
+                    <div class="max-region" data-max="{{formatted_region_value}}">
+                        <label>Plus grande émettrice</label>
+                        <p>{{formatted_region_max}}</p>
+                        <p id="maxCoal">0</p>
+                    </div>
+                    <div class="min-region" data-min="{{formatted_region_value_min}}">
+                        <label>Plus petite émettrice</label>
+                        <p>{{formatted_region_min}}</p>
+                        <p id="minCoal">0</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="country">
+                <h1>Par pays</h1>
+                <div class="rank-country">
+                    <label>Classement par émissions</label>
+                    <div class="table-limit">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pays</th>
+                                    <th>Émissions de carbone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in rank_country_limit %}
+                                    <tr>
+                                        <td>{{ row[0] }}</td>
+                                        <td>{{ row[1] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <button id="voirTousBtn">Voir plus</button>
+                    </div>
+                    <div class="full-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pays</th>
+                                    <th>Émissions de carbone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in rank_country_full %}
+                                    <tr>
+                                        <td>{{ row[0] }}</td>
+                                        <td>{{ row[1] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <button id="voirMoinsBtn">Réduire</button>
+                    </div>
+                </div>
+                <div class="display-country">
+                    <div class="avg-country" data-avg-country="{{avg_value_country}}">
+                        <label>Moyenne d'émission</label>
+                        <p id="counter2">0</p>
+                    </div>
+                    <div class="total-country" data-sum-country="{{sum_coal_country}}">
+                        <label>Somme des émissions</label>
+                        <p id="totalCoalCountry">0</p>
+                    </div>
+                    <div class="max-country" data-max-country="{{formatted_country_value_max}}">
+                        <label>Plus gros émetteur</label>
+                        <p id="maxCoalCountry">0</p>
+                    </div>
+                    <div class="min-country" data-min-country="{{formatted_country_value_min}}">
+                        <label>Plus petit émetteur</label>
+                        <p id="minCoalCountry">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="main-container">
+            <div class="description">
+                <h2>Description du projet</h2>
+                <article>
+                    Pour ce projet nous devons faire une analyse de données d'émission de carbone de différentes régions du monde ainsi que de tous les pays. <br>
+                    Pour ce faire, nous avons a disposition un dataset complet de l'empreinte carbone de tous les pays ainsi que des différentes région. 
+                </article>
+            </div>
+            <div class="techno">
+                <h2>Langages et outils utilisés</h2>
+                <article>
+                    <ul>
+                        <li>Python</li>
+                        <li>SQL</li>
+                        <li>DBeaver</li>
+                        <li>VS Code</li>
+                        <li>NumPy</li>
+                        <li>Pandas</li>
+                        <li>MatplotLib</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

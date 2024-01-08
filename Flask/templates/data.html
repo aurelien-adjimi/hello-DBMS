@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/home.css') }}"
+    />
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <title>Data</title>
+  </head>
+  <body>
+    <header>
+      <div class="banner">
+        <h1>Analyse de données de l'empreinte carbone mondiale</h1>
+      </div> 
+    </header>
+    <main>
+        <div class="result-country">
+            <h2>Pourcentage d'utilisation des ressources pour {{selected_country}}</h2>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Source de production</th>
+                    <th>% d'utilisation</th>
+                    <th>Médiane de gCO2/kWh</th>
+                    <th>Contribution en émission gCO2/kWh</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for index, row in df_info.iterrows() %}
+                  <tr>
+                    <td>{{ row['Source'] }}</td>
+                    <td>{{ row['Utilization Percentage'] }}</td>
+                    <td>{{ row['Median gCO2/kWh'] }}</td>
+                    <td>
+                      {{ row['Utilization Percentage'] }}% x {{ row['Median gCO2/kWh']
+                      }} = {{ row['Contribution gCO2/kWh'] }}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+      <div class="total">
+        <label for="Total">Emission totale de {{selected_country}}</label>
+        <p>{{total_emission}} gCO2/kWh</p>
+      </div>
+      <div class="calcul">
+        <span>Calculez l'émission à l'année</span>
+        <form action="/calculate_emission" method="POST">
+            <input type="hidden" name="country" id="country" value="{{selected_country}}">
+          <label for="">Emissions en kgCO2/kWh</label>
+          <input
+            type="text"
+            name="emission"
+            id="emission"
+            value="{{emission_conversion}}"
+            placeholder="{{emission_conversion}}"
+            readonly
+          />
+
+          <label for="">Nombre d'heure dans une année</label>
+          <input
+            type="text"
+            name="hour"
+            id="hour"
+            value="{{hour_by_year}}"
+            placeholder="{{hour_by_year}}"
+            readonly
+          />
+
+          <label for="power">Choisissez une puissance électrique de consommation <br><span class="entier">(Un nombre entier)</span></label>
+          <input type="number" name="power" id="power" required />
+
+          <input type="submit" value="Calculer" />
+        </form>
+        
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
